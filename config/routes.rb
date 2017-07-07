@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :chatrooms do
+  	resource :chatroom_user_relationships
+  	resources :messages
+  end
+
+  resources :direct_messages
+
+  root to: "chatrooms#index"
+
 end

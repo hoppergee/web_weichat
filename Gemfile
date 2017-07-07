@@ -41,6 +41,10 @@ gem 'devise'
 gem 'shog'
 gem 'awesome_rails_console'
 
+gem "rb-fsevent", "0.9.8"
+
+gem 'redis'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
