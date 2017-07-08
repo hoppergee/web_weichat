@@ -1,0 +1,14 @@
+<h2>微信</h2>
+<ul class="nav nav-pills nav-stacked" role="tablist">
+	<% if user_signed_in? %>
+		<li class="<%= active_if_current_in_chatrooms %>"><%= link_to "消息", chatrooms_path %></li>
+		<li class="<%= active_if_current_in_contacts %>"><%= link_to "联系人", contacts_path %></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li><%= link_to "登出", destroy_session_path(current_user), method: :delete %></li>
+	<% else %>
+		<li><%= link_to "登录", new_user_session_path %></li>
+		<li><%= link_to "注册", new_user_registration_path %></li>
+	<% end %>
+</ul>

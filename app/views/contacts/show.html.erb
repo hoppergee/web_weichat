@@ -1,0 +1,18 @@
+<!-- <div class="container"> -->
+	<div class="media">
+		<div class="media-body">
+			<%= @friend.username %>
+		</div>
+		<div class="media-right">
+			<img src="http://via.placeholder.com/64x64" alt="" class="media-object">
+		</div>
+	</div>
+
+	<hr>
+
+	<p>Email:<%= @friend.email %></p>
+	<% dmr = Chatroom.direct_message_for_users([current_user, @friend]) %>
+	<%= link_to "开始聊天", dmr %>
+
+
+<!-- </div> -->

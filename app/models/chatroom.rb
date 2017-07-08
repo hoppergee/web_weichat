@@ -1,7 +1,9 @@
 class Chatroom < ApplicationRecord
-	has_many :chatroom_user_relationships
+	has_many :chatroom_user_relationships, dependent: :destroy, inverse_of: :chatroom
 	has_many :users, through: :chatroom_user_relationships
 	has_many :messages
+
+	accepts_nested_attributes_for :chatroom_user_relationships, :reject_if => :all_blank, :allow_destroy => true
 
 	scope :public_channels, ->{ where(private: false) }
 	scope :direct_messages, ->{ where(private: true) }

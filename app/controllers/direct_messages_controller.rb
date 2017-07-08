@@ -1,5 +1,6 @@
 class DirectMessagesController < ApplicationController
 	before_action :authenticate_user!
+	layout "with_chatroom_list"
 
 	def show
 		users = [current_user, User.find(params[:id])]

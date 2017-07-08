@@ -1,8 +1,12 @@
 class ChatroomsController < ApplicationController
+	before_action :authenticate_user!
 	before_action :find_chatroom, only: [:show, :edit, :update, :destroy]
+	layout "with_chatroom_list"
 
 	def index
-		@chatrooms = Chatroom.public_channels
+		@chatrooms = current_user.chatrooms.order(updated_at: :desc)
+		@last_chatroom = current_user.chatrooms.last
+		redirect_to @last_chatroom
 	end
 
 	def show
@@ -12,6 +16,7 @@ class ChatroomsController < ApplicationController
 
 	def new
 		@chatroom = Chatroom.new
+		@cahtroom = @chatroom.chatroom_user_relationships.build
 	end
 
 	def edit
@@ -19,11 +24,25 @@ class ChatroomsController < ApplicationController
 	end
 
 	def create
+		friend_ids = params["friend_ids"]
+		unless friend_ids
+			render :new
+		end
+
 		@chatroom = Chatroom.new(chatroom_params)
 
 		respond_to do |format|
 			if @chatroom.save
 				@chatroom.chatroom_user_relationships.where(user: current_user).first_or_create
+				if friend_ids.size == 1
+					@chatroom.chatroom_user_relationships.where(user_id: friend_ids.first).first_or_create
+					@chatroom.private = true
+				else
+					friend_ids.each do |friend_id|
+						@chatroom.chatroom_user_relationships.where(user: friend_id).first_or_create
+					end
+				end
+
 				format.html { redirect_to @chatroom, notice: 'Chatroom was successfully created.'}
 				format.json { render :show, status: :created, location: @chatroom }
 			else

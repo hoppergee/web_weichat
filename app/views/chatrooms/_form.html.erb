@@ -16,7 +16,27 @@
     <%= f.text_field :name %>
   </div>
 
+  <% current_user.friends.each do |friend| %>
+    
+    <div class="form-group">
+      <%= label_tag friend.username %>
+      <%= check_box_tag "friend_ids[]", friend.id, false %>
+    </div>
+
+  <% end %>
+
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+
+<script>
+
+  $(":checkbox").on('change', function() {
+    $('input[type="submit"]').prop('disabled', !$(':checkbox:checked').length);
+  }).change();
+  
+</script>

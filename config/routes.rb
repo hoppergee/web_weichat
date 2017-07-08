@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   resources :direct_messages
 
+  resources :contacts do
+  	
+  end
+
   root to: "chatrooms#index"
 
 end

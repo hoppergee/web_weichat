@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FakeWeichat</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<br><br><br>
+	<div class="container">
+		<div class="col-sm-2" style="border: 1px solid red;">
+			<!-- <div class="container"> -->
+			<%= render "common/sidebar" %>
+			<!-- </div> -->
+		</div>
+		
+		<% if user_signed_in? %>
+			<div class="col-sm-4">
+				<div class="row text-center">
+					<span>Search<%= link_to "+", contacts_path, class: "btn btn-default btn-xs pull-right" %></span>
+				</div>
+				<div class="row">
+					<ul class="nav nav-pills nav-stacked">
+						<% current_user.friends.each do |friend| %>
+							<li>
+								<%= link_to contact_path(id: friend.id), data: {behavior: "chatroom-link", chatroom_id: Chatroom.direct_message_for_users([current_user, friend]).id } do %>
+									<div class="media">
+										<div class="media-left">
+											<img src="http://via.placeholder.com/30x30" alt="" class="media-object">
+										</div>
+										<div class="media-body">
+											<h5 class="media-heading"><%= friend.username %></h5>
+										</div>
+									</div>
+								<% end %>
+							</li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+		    	<%= yield %>
+		    </div>
+	    <% else %>
+	    	<%= link_to "登录", new_user_session_path %>
+	    <% end %>
+    </div>
+  </body>
+</html>
