@@ -11,8 +11,8 @@
 	<hr>
 
 	<p>Email:<%= @friend.email %></p>
-	<% dmr = Chatroom.direct_message_for_users([current_user, @friend]) %>
-	<%= link_to "开始聊天", dmr %>
+	<%= link_to "开始聊天", Chatroom.direct_message_for_users([current_user, @friend]) %>
+	<%= link_to "解除好友关系", defriend_request_contact_path(id: @friend.id), method: :post %>
 
 
 <!-- </div> -->

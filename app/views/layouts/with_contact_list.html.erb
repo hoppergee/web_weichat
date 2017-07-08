@@ -16,38 +16,31 @@
 			<%= render "common/sidebar" %>
 			<!-- </div> -->
 		</div>
-		
-		<% if user_signed_in? %>
-			<div class="col-sm-4">
-				<div class="row text-center">
-					<span>Search<%= link_to "+", contacts_path, class: "btn btn-default btn-xs pull-right" %></span>
+
+		<div class="col-sm-4">
+			<div id="friend-search-container" class="row text-center">
+				<div id="friend-search-head" class="form-inline">
+					
+					<%= text_field_tag 'search-friends-field', nil, placeholder: "搜索联系人", url: search_friends_contacts_path, class: "form-control" %>
+
+					<%= link_to "+", contacts_path, class: "btn btn-default btn-xs pull-right form-control" %>
 				</div>
-				<div class="row">
-					<ul class="nav nav-pills nav-stacked">
-						<% current_user.friends.each do |friend| %>
-							<li>
-								<%= link_to contact_path(id: friend.id), data: {behavior: "chatroom-link", chatroom_id: Chatroom.direct_message_for_users([current_user, friend]).id } do %>
-									<div class="media">
-										<div class="media-left">
-											<img src="http://via.placeholder.com/30x30" alt="" class="media-object">
-										</div>
-										<div class="media-body">
-											<h5 class="media-heading"><%= friend.username %></h5>
-										</div>
-									</div>
-								<% end %>
-							</li>
-						<% end %>
-					</ul>
+				<hr>
+				<div id="friend-search-body">
+					
 				</div>
 			</div>
+			
+			<div id="friend-list-container" class="row">
+				<%= render partial: "common/friend_list", locals: {friends: current_user.friends} %>
+			</div>
 
-			<div class="col-sm-6">
-		    	<%= yield %>
-		    </div>
-	    <% else %>
-	    	<%= link_to "登录", new_user_session_path %>
-	    <% end %>
+
+		</div>
+
+		<div class="col-sm-6">
+	    	<%= yield %>
+	    </div>
     </div>
   </body>
 </html>

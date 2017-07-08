@@ -7,4 +7,16 @@ class Friendship < ApplicationRecord
 		request.status = 'accepted'
 		request.save
 	end
+
+	def is_accepted?
+		status == "accepted"
+	end
+
+	def is_requested?
+		status == "requested"
+	end
+
+	def is_pending?
+		status == "pending"
+	end
 end

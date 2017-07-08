@@ -44,6 +44,7 @@ gem 'awesome_rails_console'
 gem "rb-fsevent", "0.9.8"
 
 gem 'redis'
+gem 'ransack'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -9,7 +9,8 @@ class User < ApplicationRecord
   has_many :messages
 
   has_many :friendships
-  has_many :friends, :through => :friendships
+  has_many :accepted_friendships, ->{where status: "accepted"}, class_name: 'Friendship'
+  has_many :friends, :through => :accepted_friendships
 
   def request_friendship_with(friend)
   	unless self == friend or Friendship.exists?(user: self, friend: friend)
@@ -32,5 +33,22 @@ class User < ApplicationRecord
   def has_been_requested_by?(friend)
   	Friendship.find_by(user: self, friend: friend).status == "requested"
   end
+
+  def friendship_with(friend)
+  	Friendship.find_by(user: self, friend: friend)
+  end
+
+  def defriend_with(friend)
+  	my_friendship = self.friendship_with(friend)
+  	his_frienship = friend.friendship_with(self)
+  	if my_friendship 
+  		transaction do
+  			my_friendship.destroy
+  			his_frienship.destroy
+  		end
+  	end
+  end
+
+
 
 end

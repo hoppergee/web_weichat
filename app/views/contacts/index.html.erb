@@ -2,10 +2,30 @@
 <h5>添加联系人</h5>
 
 <div>
-<div class="input-group">
-	<input type="text" class="form-control" placeholder="可输入用户名、邮箱进行搜索">
-	<span class="input-group-btn">
-		<%= link_to "搜索", "#", class: "btn btn-default" %>
-	</span>
+	<%= search_form_for @q, url: contacts_path do |f| %>
+		<div class="input-group">
+			<%= f.search_field :username_or_email_cont, :placeholder => "可输入用户名、邮箱进行搜索", class: "form-control" %>
+			<!-- <input type="text" class="form-control" placeholder="可输入用户名、邮箱进行搜索"> -->
+			<span class="input-group-btn">
+				<%= f.submit "搜索", class: "btn btn-default" %>
+			</span>
+		</div>
+	<% end %>
 </div>
+
+
+<div>
+	<% @finded_friends.each do |finded_friend| %>
+		<div class="media">
+			<div class="media-left media-middle">
+				<img src="http://via.placeholder.com/45x45" alt="" class="media-object">
+			</div>
+			<div class="media-body">
+				<h6><%= finded_friend.username %></h6>
+				<small><%= finded_friend.email %></small>
+				<small class="pull-right"><%= render_friendship_status_with(finded_friend) %></small>
+			</div>
+				<%#= link_to "申请添加好友", request_friendship_contact_path(id: finded_friend.id) %>
+		</div>
+	<% end %>
 </div>

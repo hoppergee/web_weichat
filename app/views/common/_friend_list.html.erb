@@ -1,0 +1,16 @@
+<ul class="nav nav-pills nav-stacked">
+	<% friends.each do |friend| %>
+		<li>
+			<%= link_to contact_path(id: friend.id), data: {behavior: "chatroom-link", chatroom_id: Chatroom.direct_message_for_users([current_user, friend]).id } do %>
+				<div class="media">
+					<div class="media-left">
+						<img src="http://via.placeholder.com/30x30" alt="" class="media-object">
+					</div>
+					<div class="media-body">
+						<h5 class="media-heading"><%= friend.username %></h5>
+					</div>
+				</div>
+			<% end %>
+		</li>
+	<% end %>
+</ul>
