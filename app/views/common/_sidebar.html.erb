@@ -1,14 +1,24 @@
-<h2>微信</h2>
-<ul class="nav nav-pills nav-stacked" role="tablist">
+<div class="text-center">
+	<h5 id="sidebar-header">微信</h5>
+	<small id="sidebar-username"><%= current_user.username if user_signed_in? %></small>
+</div>
+<ul class="nav nav-stacked" role="tablist">
 	<% if user_signed_in? %>
-		<li class="<%= active_if_current_in_chatrooms %>"><%= link_to "消息", chatrooms_path %></li>
-		<li class="<%= active_if_current_in_contacts %>"><%= link_to "联系人", contacts_path %></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li><%= link_to "登出", destroy_session_path(current_user), method: :delete %></li>
+		<li id="chatrooms-side-btn">
+			<%= link_to chatrooms_path do %>
+				<%= image_when_current_in_chatrooms %>
+			<% end %>	
+		</li>
+		<li id="contacts-side-btn">
+			<%= link_to contacts_path do %>
+				<%= image_when_current_in_contacts %>
+			<% end %>
+		</li>
 	<% else %>
 		<li><%= link_to "登录", new_user_session_path %></li>
 		<li><%= link_to "注册", new_user_registration_path %></li>
 	<% end %>
 </ul>
+
+
+<%= link_to "登出", destroy_session_path(current_user), method: :delete, id:"logout-button" if user_signed_in? %>

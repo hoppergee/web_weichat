@@ -9,25 +9,17 @@
   </head>
 
   <body>
-  	<br><br><br>
-	<div class="container">
-		<div class="col-sm-2" style="border: 1px solid red;">
-			<!-- <div class="container"> -->
+	<div class="container weichat-container">
+		<div class="col-sm-1 weichat-sidebar">
 			<%= render "common/sidebar" %>
-			<!-- </div> -->
 		</div>
 
-		<div class="col-sm-4">
-			<div id="friend-search-container" class="row text-center">
+		<div class="col-sm-4" style="height: 100%;">
+			<div id="friend-search-container" class="row text-center" style="height: 10%;">
 				<div id="friend-search-head" class="form-inline">
-					
-					<%= text_field_tag 'search-friends-field', nil, placeholder: "搜索联系人", url: search_friends_contacts_path, class: "form-control" %>
+					<%= text_field_tag 'search-friends-field', nil, placeholder: "搜索联系人", url: search_friends_contacts_path, class: ""%>
 
-					<%= link_to "+", contacts_path, class: "btn btn-default btn-xs pull-right form-control" %>
-				</div>
-				<hr>
-				<div id="friend-search-body">
-					
+					<%= link_to "+", contacts_path, class: "btn btn-default btn-xs ", id:"add_new_friend_btn" %>
 				</div>
 			</div>
 			
@@ -35,10 +27,9 @@
 				<%= render partial: "common/friend_list", locals: {friends: current_user.friends} %>
 			</div>
 
-
 		</div>
 
-		<div class="col-sm-6">
+		<div class="col-sm-7">
 	    	<%= yield %>
 	    </div>
     </div>

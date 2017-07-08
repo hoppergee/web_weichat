@@ -1,6 +1,6 @@
 <ul class="nav nav-pills nav-stacked">
 	<% friends.each do |friend| %>
-		<li>
+		<li class="friend-list-cell">
 			<%= link_to contact_path(id: friend.id), data: {behavior: "chatroom-link", chatroom_id: Chatroom.direct_message_for_users([current_user, friend]).id } do %>
 				<div class="media">
 					<div class="media-left">

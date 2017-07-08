@@ -9,46 +9,40 @@
   </head>
 
   <body>
-  	<br><br><br>
-	<div class="container">
-		<div class="col-sm-2" style="border: 1px solid red;">
-			<!-- <div class="container"> -->
+
+	<div class="container weichat-container">
+		<div class="col-sm-1 weichat-sidebar">
 			<%= render "common/sidebar" %>
-			<!-- </div> -->
 		</div>
 		
-		<%# if user_signed_in? %>
-			<div class="col-sm-4">
-				<div class="row text-center">
-					<span>Search<%= link_to "+", new_chatroom_path, class: "btn btn-default btn-xs pull-right" %></span>
-				</div>
-				<div class="row">
-					<ul class="nav nav-pills nav-stacked">
-						<% current_user.chatrooms.order(updated_at: :desc).each do |chatroom| %>
-							<li>
-								<%= link_to chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} do %>
-									<div class="media">
-										<div class="media-left">
-											<img src="http://via.placeholder.com/64x64" alt="" class="media-object">
-										</div>
-										<div class="media-body">
-											<h5 class="media-heading"><%= chatroom.name %></h5>
-											<small><%= "你好，我上次跟你说的内容...." %></small>
-										</div>
-									</div>
-								<% end %>
-							</li>
-						<% end %>
-					</ul>
-				</div>
+		<div class="col-sm-4" style="height: 100%;">
+			<div class="row text-center" style="height: 10%;">
+				<span>Search<%= link_to "+", new_chatroom_path, class: "btn btn-default btn-xs pull-right" %></span>
 			</div>
+			<div class="row chatroom-list">
+				<ul class="nav nav-pills nav-stacked">
+					<% current_user.chatrooms.order(updated_at: :desc).each do |chatroom| %>
+						<li>
+							<%= link_to chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} do %>
+								<div class="media">
+									<div class="media-left">
+										<img src="http://via.placeholder.com/64x64" alt="" class="media-object">
+									</div>
+									<div class="media-body">
+										<h5 class="media-heading"><%= chatroom.name %></h5>
+										<small><%= "你好，我上次跟你说的内容...." %></small>
+									</div>
+								</div>
+							<% end %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
 
-			<div class="col-sm-6">
-		    	<%= yield %>
-		    </div>
-	    <%# else %>
-
-	    <%# end %>
+		<div class="col-sm-7">
+	    	<%= yield %>
+	    </div>
     </div>
   </body>
 </html>
