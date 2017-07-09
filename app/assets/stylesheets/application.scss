@@ -17,6 +17,9 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
+
+
+
 // weichat container
 .weichat-container {
     height: 400px;
@@ -63,7 +66,7 @@
 }
 
 .chatroom-list {
-	height: 88%;
+	height: 90%;
 	overflow: auto;
 }
 
@@ -103,6 +106,61 @@
 		border-bottom: 0.5px solid RGBA(218, 218, 218, 1.00);
 		background-color: RGBA(230, 230, 230, 1.00);
 		margin: 0;
+
+		.media-heading {
+			color: RGBA(39, 39, 39, 1.00);	
+		}
+		
+	}
+}
+
+// chatroom search
+
+#chatroom-search-head {
+	padding-top: 10px;
+	padding-bottom: 8px;
+	background-color: RGBA(239, 239, 239, 1.00);
+
+	#search-chatrooms-field {
+		height: 20px;
+		border-radius: 3px;
+		border: 0.5px solid RGBA(208, 208, 208, 1.00);
+		background-color: RGBA(225, 225, 225, 1.00);
+	}
+
+	#create_new_chatroom_btn {
+		background-color: RGBA(255, 255, 255, 1.00);
+		border: 0.5px solid RGBA(229, 229, 229, 1.00);
+		margin-left: 10px;
+		height: 18px;
+		padding-bottom: 10px;
+		margin-bottom: 3px;
+	}
+}
+
+// Chatroom list
+.chatroom-list {
+	.chatroom-list-cell {
+		border-bottom: 0.5px solid RGBA(218, 218, 218, 1.00);
+		background-color: RGBA(230, 230, 230, 1.00);
+		margin: 0;
+		
+		.media-heading {
+			color: RGBA(39, 39, 39, 1.00);	
+		}
+
+		.media-body {
+			color: RGBA(179, 179, 179, 1.00);
+		}
+		
+		.media-subtitle {
+			font-size: 70%;
+			width: 130px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
 	}
 }
 

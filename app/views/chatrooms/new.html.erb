@@ -1,5 +1,12 @@
-<h1>New Chatroom</h1>
 
-<%= render 'form', chatroom: @chatroom %>
+<div id="chatroom-new-container">
+	
+	<div id="chatroom-new-header">
+		<h3>新建聊天室</h3>
+	</div>
+	
+	<div id="chatroom-new-body">
+		<%= render 'form', chatroom: @chatroom %>
+	</div>
 
-<%= link_to 'Back', chatrooms_path %>
+</div>

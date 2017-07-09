@@ -1,3 +1,90 @@
-// Place all the styles related to the chatrooms controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// Chatroom show
+@mixin transform($translate) {
+	-webkit-transform: $translate;
+	transform: $translate;
+}
+
+#chatroom-show-container {
+	height: 100%;
+	border-left: 0.5px solid RGBA(226, 226, 226, 1.00);
+}
+
+#chatroom-show-header {
+	height: 10%;
+	background-color: RGBA(243, 243, 243, 1.00);
+	border-bottom: 0.5px solid RGBA(226, 226, 226, 1.00);
+	position: relative;
+
+	p {
+		position: absolute;
+		top: 50%;
+		@include transform(translateY(-50%));
+		left: 20px;
+	}
+}
+
+#chatroom-show-body {
+	height: 90%;
+	position: relative;
+	background-color: RGBA(243, 243, 243, 1.00);
+
+	#chatroom-chats {
+		height: 315px;
+		overflow: scroll;
+	}
+
+	#new_message {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		border-top: 0.5px solid RGBA(226, 226, 226, 1.00);
+		background-color: RGBA(243, 243, 243, 1.00);
+
+		#message_content {
+			width: 100%;
+			padding-left: 10px;
+			padding-top: 5px;
+			border: none;
+			background-color: RGBA(243, 243, 243, 1.00);
+			font-size: 70%;
+
+			&:focus {
+				// border: 0 none;
+				outline: none;
+				resize: none;
+			}
+		}
+	}
+}
+
+// Chatroom new
+
+#chatroom-new-container {
+	height: 100%;
+	padding: 5px 30px;
+	position: relative;
+
+	#chatroom-new-header {
+		height: 10%
+	}
+
+	#chatroom-new-body {
+		height: 90%;
+		
+		#chatroom_name {
+			border: none;
+			border-bottom: 0.5px solid RGBA(24, 186, 29, 1.00);
+		}
+
+		#chatroom-form-friend-list{
+			height: 220px;
+			overflow: auto;
+			padding-top: 5px;
+			border: 0.5px solid RGBA(226, 226, 226, 1.00);
+		}
+
+		.actions {
+			margin-top: 10px;
+		}
+	}
+}

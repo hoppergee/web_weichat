@@ -16,21 +16,26 @@
 		</div>
 		
 		<div class="col-sm-4" style="height: 100%;">
-			<div class="row text-center" style="height: 10%;">
-				<span>Search<%= link_to "+", new_chatroom_path, class: "btn btn-default btn-xs pull-right" %></span>
+			<div id="chatroom-search-container" class="row text-center" style="height: 10%;">
+				<div id="chatroom-search-head" class="form-inline">
+					<%= text_field_tag 'search-chatrooms-field', nil, placeholder: "搜索聊天室", url: "#{}"%>
+
+					<%= link_to "+", new_chatroom_path, class: "btn btn-default btn-xs", id:"create_new_chatroom_btn" %>
+				</div>
 			</div>
+
 			<div class="row chatroom-list">
 				<ul class="nav nav-pills nav-stacked">
 					<% current_user.chatrooms.order(updated_at: :desc).each do |chatroom| %>
-						<li>
+						<li class="chatroom-list-cell">
 							<%= link_to chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} do %>
 								<div class="media">
 									<div class="media-left">
-										<img src="http://via.placeholder.com/64x64" alt="" class="media-object">
+										<img src="http://via.placeholder.com/50x50" alt="" class="media-object">
 									</div>
 									<div class="media-body">
-										<h5 class="media-heading"><%= chatroom.name %></h5>
-										<small><%= "你好，我上次跟你说的内容...." %></small>
+										<div class="media-heading"><%= chatroom.name %></div>
+										<div class="media-subtitle"><%= "你好，我上次跟你说的内容,你想清楚没有？" %></div>
 									</div>
 								</div>
 							<% end %>
@@ -40,7 +45,7 @@
 			</div>
 		</div>
 
-		<div class="col-sm-7">
+		<div class="col-sm-7" style="height: 100%;">
 	    	<%= yield %>
 	    </div>
     </div>

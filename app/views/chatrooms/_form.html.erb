@@ -12,23 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %>
+    <%= f.label :name %>:
     <%= f.text_field :name %>
   </div>
+  
+  <div id="chatroom-form-friend-list">
+    <% current_user.friends.each do |friend| %>
+      
+      <div>
+        <%= label_tag friend.username %>
+        <%= check_box_tag "friend_ids[]", friend.id, false %>
+      </div>
 
-  <% current_user.friends.each do |friend| %>
-    
-    <div class="form-group">
-      <%= label_tag friend.username %>
-      <%= check_box_tag "friend_ids[]", friend.id, false %>
-    </div>
-
-  <% end %>
+    <% end %>
+  </div>
 
 
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions pull-right">
+    <%= f.submit "创建", class: "btn btn-default btn-sm"%>
   </div>
 <% end %>
 
@@ -38,5 +39,5 @@
   $(":checkbox").on('change', function() {
     $('input[type="submit"]').prop('disabled', !$(':checkbox:checked').length);
   }).change();
-  
+
 </script>

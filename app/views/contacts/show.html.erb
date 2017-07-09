@@ -1,4 +1,5 @@
-<!-- <div class="container"> -->
+<div id="contact-show-container">
+
 	<div class="media">
 		<div class="media-body">
 			<%= @friend.username %>
@@ -9,10 +10,22 @@
 	</div>
 
 	<hr>
+	
+	<table class="user-detail-table">
+		<tr>
+			<th>Email: </th>
+			<td><%= @friend.email %></td>
+		</tr>
+	</table>
+	
+	<div class="user-interactive-container">
+		<div class="btn-group" id="start-talking-btn">
+			<%= link_to "开始聊天", Chatroom.direct_message_for_users([current_user, @friend]), class:"btn btn-success btn-sm" %>
+		</div>
 
-	<p>Email:<%= @friend.email %></p>
-	<%= link_to "开始聊天", Chatroom.direct_message_for_users([current_user, @friend]) %>
-	<%= link_to "解除好友关系", defriend_request_contact_path(id: @friend.id), method: :post %>
+		<div class="btn-group" id="defriend-btn">
+			<%= link_to "解除好友关系", defriend_request_contact_path(id: @friend.id), method: :post, class: "btn btn-danger btn-xs" %>
+		</div>
+	</div>
 
-
-<!-- </div> -->
+</div>

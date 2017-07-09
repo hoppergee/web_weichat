@@ -1,3 +1,60 @@
-// Place all the styles related to the contacts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin transform($translate) {
+	-webkit-transform: $translate;
+	transform: $translate;
+}
+
+#contact-show-container {
+	padding: 40px 50px;
+	height: 100%;
+	position: relative;
+
+	.media-body {
+		font-size: 110%;
+	}
+
+	.user-detail-table th {
+		color: RGBA(136, 136, 147, 1.00);
+		padding-right: 10px;
+	}
+
+	#start-talking-btn {
+		position: absolute;
+		bottom: 40%;
+		left: 50%;
+		@include transform(translateX(-50%));
+	}
+
+	#defriend-btn {
+		position: absolute;
+		bottom: 30px;
+		left: 50%;
+		@include transform(translateX(-50%))
+	}
+
+}
+
+
+#adding-contact-container {
+	padding: 10px 20px;
+	height: 100%;
+	position: relative;
+
+	#adding-contact-search-section {
+		height: 20%;
+	}
+
+	#search-contact-result-section {
+		height: 78%;
+		overflow: auto;
+
+		.media {
+			padding-bottom: 5px;
+			border-bottom: 0.5px solid RGBA(136, 136, 147, 1.00);
+		}
+
+		.friendship-status {
+			padding-right: 10px;
+			color: RGBA(136, 136, 147, 1.00);
+		}
+	}
+}
