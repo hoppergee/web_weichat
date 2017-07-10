@@ -21,4 +21,13 @@ class Chatroom < ApplicationRecord
 			chatroom
 		end
 	end
+
+	def last_message_str
+		msg = self.messages.last
+		if msg
+			"#{msg.content[0..7]}..."
+		else
+			""
+		end
+	end
 end

@@ -35,7 +35,7 @@
 									</div>
 									<div class="media-body">
 										<div class="media-heading"><%= render_name_of(chatroom) %></div>
-										<div class="media-subtitle"><%= "你好，我上次跟你说的内容,你想清楚没有？" %></div>
+										<div class="media-subtitle"><%= chatroom.last_message_str %></div>
 									</div>
 								</div>
 							<% end %>
