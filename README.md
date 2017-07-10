@@ -1,24 +1,5 @@
-# README
+# 复刻Mac版Weichat
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![](http://7xss15.com1.z0.glb.clouddn.com/2017-07-10-Screen%20Shot%202017-07-10%20at%208.53.30%20PM.png)
+![](http://7xss15.com1.z0.glb.clouddn.com/2017-07-10-Screen%20Shot%202017-07-10%20at%208.58.05%20PM.png)
+![](http://7xss15.com1.z0.glb.clouddn.com/2017-07-10-Screen%20Shot%202017-07-10%20at%208.58.17%20PM.png)
