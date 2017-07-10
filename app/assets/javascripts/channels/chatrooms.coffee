@@ -25,6 +25,7 @@ App.chatrooms = App.cable.subscriptions.create "ChatroomsChannel",
   			message_html = message_html_0.replace(/class="media-body"/g, 'class="media-body" style="text-align: right;"')
   			console.log("我自己发的")
   		active_chatroom.append(message_html)
+  		$("#chatroom-chats").scrollTop($("#chatroom-chats")[0].scrollHeight);
 
   	else
   		$("[data-behavior='chatroom-link'][data-chatroom-id='#{data.chatroom_id}']").css("font-weight", "bold")

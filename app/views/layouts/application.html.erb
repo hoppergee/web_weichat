@@ -9,16 +9,13 @@
   </head>
 
   <body>
-  	<br><br><br>
-	<div class="container weichat-container">
-		<div class="col-sm-2" style="border: 1px solid red;">
-			<!-- <div class="container"> -->
-			<%= render "common/sidebar" %>
-			<!-- </div> -->
-		</div>
+    <div class="container weichat-container">
+      <div class="col-sm-1 weichat-sidebar">
+        <%= render "common/sidebar" %>
+      </div>
 
-		<div class="col-sm-10">
-	    	<%= yield %>
+		  <div class="col-sm-11" id="user_sign_container">
+	    	  <%= yield %>
 	    </div>
     </div>
   </body>

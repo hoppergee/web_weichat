@@ -54,6 +54,17 @@
 		}
 	}
 
+	#signin-button, #signup-button {
+		color: rgba(125, 125, 125, 1.00);
+		padding-left: 0;
+		padding-right: 0;
+
+		&:hover {
+			background-color: transparent;
+			color: RGBA(24, 182, 29, 1.00);
+		}
+	}
+
 	#logout-button {
 		position: absolute;
 		bottom: 20px;
@@ -73,6 +84,35 @@
 #friend-list-container {
 	height: 90%;
 	overflow: auto;
+}
+
+// user sign in/up
+
+@mixin transform($translate) {
+	-webkit-transform: $translate;
+	transform: $translate;
+}
+
+#user_sign_container {
+	position: relative;
+	height: 100%;
+	background-color: RGBA(0, 247, 121, 0.05);
+
+	.panel {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		@include transform(translate(-50%, -50%));
+		
+		.field {
+			margin-bottom: 5px;
+		}
+
+		.form-control {
+			height: 25px; 
+			width: 70%;
+		}
+	}
 }
 
 // contact search
