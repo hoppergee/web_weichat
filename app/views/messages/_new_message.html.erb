@@ -1,17 +1,11 @@
 <div class="media" style="padding: 5px;">
-	<% if message.user != current_user %>
 		<div class="media-left">
 			<img src="http://via.placeholder.com/30x30" alt="" class="media-object">
 		</div>
 		<div class="media-body">
 			<%= message.content %>
 		</div>
-	<% else %>
- 		<div class="media-body" style="text-align: right;">
-			<%= message.content %>
-		</div>
 		<div class="media-right">
 			<img src="http://via.placeholder.com/30x30" alt="" class="media-object">
 		</div>
-	<% end %>
 </div>

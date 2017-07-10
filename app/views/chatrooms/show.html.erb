@@ -26,6 +26,10 @@
 
 </div>
 
+<%= javascript_tag do %>
+  window.current_user_id = '<%= j current_user.id.to_s %>'
+<% end %>
+
 <script>
   // $("#message_content").resizable({handles: 'n'});
 // $("#new_message").resizable({handles: 'n'});

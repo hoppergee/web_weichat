@@ -17,13 +17,19 @@ App.chatrooms = App.cable.subscriptions.create "ChatroomsChannel",
   		else
   			App.last_read.update(data.chatroom_id)
 
-  		# active_chatroom.append("<div><strong>#{data.username}:</strong> #{data.content}</div>")
-  		console.log(data)
-  		active_chatroom.append(data.message)
+  		if parseInt(current_user_id) != data.message_sender_id
+  			message_html = data.message.replace(/<div class="media-right">[\s\S]*?<\/div>/g, '')
+  			console.log("别人发的")
+  		else
+  			message_html_0 = data.message.replace(/<div class="media-left">[\s\S]*?<\/div>/g, '')
+  			message_html = message_html_0.replace(/class="media-body"/g, 'class="media-body" style="text-align: right;"')
+  			console.log("我自己发的")
+  		active_chatroom.append(message_html)
 
   	else
   		$("[data-behavior='chatroom-link'][data-chatroom-id='#{data.chatroom_id}']").css("font-weight", "bold")
 
   send_message: (chatroom_id, message) ->
   	@perform "send_message", {chatroom_id: chatroom_id, content: message}
+
 
