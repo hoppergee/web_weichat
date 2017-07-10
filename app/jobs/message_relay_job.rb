@@ -7,7 +7,8 @@ class MessageRelayJob < ApplicationJob
   		message_sender_id: message.user.id,
   		username: message.user.username,
   		content: message.content,
-  		chatroom_id: message.chatroom.id
+  		chatroom_id: message.chatroom.id,
+      last_message_str: "#{message.content[0..7]}..."
   	}
   end
 end

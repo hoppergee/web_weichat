@@ -49,6 +49,10 @@ class User < ApplicationRecord
   	end
   end
 
-
+  def unread_messages_count_in(chatroom)
+    relationship = self.chatroom_user_relationships.find_by(chatroom: chatroom)
+    messages = Message.where(chatroom: chatroom)
+    messages.select {|msg| relationship.last_read_at < msg.created_at }.count
+  end
 
 end

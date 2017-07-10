@@ -28,7 +28,25 @@ App.chatrooms = App.cable.subscriptions.create "ChatroomsChannel",
   		$("#chatroom-chats").scrollTop($("#chatroom-chats")[0].scrollHeight);
 
   	else
-  		$("[data-behavior='chatroom-link'][data-chatroom-id='#{data.chatroom_id}']").css("font-weight", "bold")
+  		current_room_link = $("[data-behavior='chatroom-link'][data-chatroom-id='#{data.chatroom_id}']")
+  		current_room_link.css("font-weight", "bold")
+  		badge = $("[data-behavior='chatroom-link'][data-chatroom-id='#{data.chatroom_id}'] .media .media-left .badge")
+  		unread_count = parseInt(badge.text())
+  		if unread_count
+  			unread_count += 1
+  		else
+  			unread_count = 1
+  		badge.html(unread_count)
+  		if unread_count > 9
+  			badge.removeClass("single_number")
+  			badge.addClass("double_number")
+  		else if unread_count > 0
+  			badge.addClass("single_number")
+
+			current_room_link.parent().prependTo(current_room_link.parent().parent())
+			subtitle = $("[data-behavior='chatroom-link'][data-chatroom-id='#{data.chatroom_id}'] .media .media-subtitle")
+			subtitle.html(data.last_message_str)
+
 
   send_message: (chatroom_id, message) ->
   	@perform "send_message", {chatroom_id: chatroom_id, content: message}
