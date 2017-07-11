@@ -15,3 +15,24 @@
 //= require jquery-ui/widgets/resizable
 //= require turbolinks
 //= require_tree .
+
+
+$(document).on('turbolinks:load', function(){
+	console.log(1);
+	$(".user_upload_avatar_btn").on('change', function(evt){
+		console.log(2);
+		var files = evt.target.files;
+		var image = files[0];
+		var reader = new FileReader();
+		reader.onload = function(file) {
+			var img = new Image();
+			console.log(file);
+			img.src = file.target.result;
+			img.width = 30;
+			img.height = 30;
+			$(".user_sign_page_avatar").html(img);
+		}
+		reader.readAsDataURL(image);
+		console.log(files);
+	})
+})

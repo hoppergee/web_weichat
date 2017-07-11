@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :accepted_friendships, ->{where status: "accepted"}, class_name: 'Friendship'
   has_many :friends, :through => :accepted_friendships
 
+  mount_uploader :avatar, AvatarUploader
+
   def request_friendship_with(friend)
   	unless self == friend or Friendship.exists?(user: self, friend: friend)
   		transaction do

@@ -6,6 +6,21 @@
   <div class="panel-body">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
+      
+      <div class="pull-right user_sign_page_avatar">
+        <%= image_tag 'DefaultAvatar', size: "30x30" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :avatar %>
+        <%= f.file_field :avatar ,class: "user_upload_avatar_btn"%>
+        <% if f.object.avatar.present? %>
+            <lable>
+                <%= f.check_box :remove_logo %> 删除头像
+            </lable>
+            <%= link_to f.object.avatar.filename, f.object.avatar.url, target: "_blank" %>
+        <% end %>
+      </div>
 
       <div class="field">
         <%= f.label :username %>
