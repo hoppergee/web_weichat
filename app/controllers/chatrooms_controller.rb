@@ -6,7 +6,7 @@ class ChatroomsController < ApplicationController
 	def index
 		@chatrooms = current_user.chatrooms.order(updated_at: :desc)
 		@last_chatroom = current_user.chatrooms.last
-		redirect_to @last_chatroom
+		redirect_to @last_chatroom if @last_chatroom
 	end
 
 	def show

@@ -57,4 +57,13 @@ class User < ApplicationRecord
     messages.select {|msg| relationship.last_read_at < msg.created_at }.count
   end
 
+  def avatar_url
+    url = self.avatar.url
+    if url
+      url
+    else
+      "DefaultAvatar"
+    end
+  end
+
 end

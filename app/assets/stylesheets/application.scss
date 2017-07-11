@@ -191,6 +191,19 @@
 			.media-left {
 				position: relative;
 
+				.group-avatars {
+					width: 50px;
+					height: 50px;
+					.group-user-avatar-50 {
+						float: left;
+						width: 50%;
+					}
+					.group-user-avatar-33 {
+						float: left;
+						width: 33%;
+					}
+				}
+
 				.badge {
 					position: absolute; 
 					right:0;
