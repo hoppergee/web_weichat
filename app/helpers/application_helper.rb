@@ -26,4 +26,13 @@ module ApplicationHelper
 			image_tag "Tabbar-Contacts", size: "22x20"
 		end
 	end
+
+	def render_user_avatar_of(user , size, class_name)
+		avatar_url = user.avatar.url
+		if avatar_url
+			image_tag avatar_url, size: "#{size}", class:"#{class_name}"
+		else
+			image_tag "DefaultAvatar", size: "#{size}", class:"#{class_name}"
+		end
+	end
 end

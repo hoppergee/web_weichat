@@ -1,7 +1,7 @@
 <div class="media" style="padding: 5px;">
 	<% if message.user != current_user %>
 		<div class="media-left">
-			<img src="http://via.placeholder.com/30x30" alt="" class="media-object">
+			<%= render_user_avatar_of(current_user, "30x30", "media-object") %>
 		</div>
 		<div class="media-body">
 			<%= message.content %>
@@ -11,7 +11,7 @@
 			<%= message.content %>
 		</div>
 		<div class="media-right">
-			<img src="http://via.placeholder.com/30x30" alt="" class="media-object">
+			<%= render_user_avatar_of(current_user, "30x30", "media-object") %>
 		</div>
 	<% end %>
 </div>

@@ -22,9 +22,9 @@ module ChatroomsHelper
 		if chatroom.private
 			other_user_avatar = chatroom.users.where.not(id: current_user.id).first.avatar
 			if other_user_avatar.url
-				image_tag( other_user_avatar, size:"50x50", class:"media-object img-rounded" )
+				image_tag( other_user_avatar, size:"50x50", class:"media-object" )
 			else
-				image_tag( "DefaultAvatar", size:"50x50", class:"media-object img-rounded" )
+				image_tag( "DefaultAvatar", size:"50x50", class:"media-object" )
 			end
 		else
 			items = ""
@@ -42,9 +42,4 @@ module ChatroomsHelper
 		end
 	end
 
-	def foo_list items
-	  content_tag :ul do
-	      items.collect {|item| concat(content_tag(:li, item))}
-	  end
-	end
 end

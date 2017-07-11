@@ -22,7 +22,7 @@
 		<% @finded_friends.each do |finded_friend| %>
 			<div class="media">
 				<div class="media-left media-middle">
-					<img src="http://via.placeholder.com/45x45" alt="" class="media-object">
+					<%= render_user_avatar_of(finded_friend, "45x45", "media-object") %>
 				</div>
 				<div class="media-body">
 					<h6><%= finded_friend.username %></h6>
