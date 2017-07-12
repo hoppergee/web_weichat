@@ -5,15 +5,18 @@ class ContactsController < ApplicationController
 	def index
 		if params[:q] && params[:q].values.reject(&:blank?).any?
 			@q = User.all.ransack(params[:q])
-			@finded_friends = @q.result
+			@finded_friends = @q.result - [current_user]
 		else
 			@q = current_user.friends.ransack(:id_eq => -1)
-			@finded_friends = @q.result
+			@finded_friends = @q.result - [current_user]
 		end
 	end
 
 	def show
 		@friend = User.find(params[:id])
+		unless current_user.is_friend_of?(@friend)
+			redirect_to contacts_path
+		end
 	end
 
 	def new
@@ -44,6 +47,7 @@ class ContactsController < ApplicationController
 
 	def search_friends
 		q = User.ransack(username_or_email_cont: params[:query_str])
-		@friends = q.result
+		@friends = q.result - [current_user]
 	end
+
 end

@@ -45,12 +45,27 @@
 	}
 
 	#chatrooms-side-btn, #contacts-side-btn {
+		position: relative;
+
 		a {
 			padding: 10px 5px;
 		}
 
 		a:hover {
 			background-color: transparent;
+		}
+
+		.badge {
+			position: absolute; 
+			right:0;
+			top:0; 
+			transform:translate(0%, 80%);
+			background-color: RGBA(242, 60, 58, 1.00);
+		}
+
+		.little_number {
+			font-size: 8px;
+			padding: 2px 4px;
 		}
 	}
 
@@ -140,6 +155,16 @@
 }
 
 // Conatact List
+
+#new-friend-requests {
+	background-color: RGBA(230, 230, 230, 1.00);
+
+	#new-friend-requests-btn {
+		text-decoration: none;
+		color: RGBA(39, 39, 39, 1.00);
+		padding-left: 20px;
+	}
+}
 
 #friend-list-container {
 	.friend-list-cell {

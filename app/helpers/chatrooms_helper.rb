@@ -18,9 +18,18 @@ module ChatroomsHelper
 		end
 	end
 
+	def render_all_unread_count_of(user)
+		count = user.all_unread_messages_count
+		if count > 0
+			content_tag(:span, "#{count}", class: ["badge", "little_number"])
+		else
+			content_tag(:span, "", class: ["badge", "little_number"])
+		end
+	end
+
 	def render_avatar_of(chatroom)
 		if chatroom.private
-			other_user_avatar = chatroom.users.where.not(id: current_user.id).first.avatar
+			other_user_avatar = chatroom.users.reject{|u| u.id == current_user.id}.first.avatar
 			if other_user_avatar.url
 				image_tag( other_user_avatar, size:"50x50", class:"media-object" )
 			else

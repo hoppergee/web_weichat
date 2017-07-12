@@ -17,4 +17,13 @@ module ContactsHelper
 		end
 
 	end
+
+	def render_untreated_friendships_count_of(user)
+		count = user.untreated_friendships_count
+		if count > 0
+			content_tag(:span, "#{count}", class: ["badge", "little_number"])
+		else
+			content_tag(:span, "", class: ["badge", "little_number"])
+		end
+	end
 end

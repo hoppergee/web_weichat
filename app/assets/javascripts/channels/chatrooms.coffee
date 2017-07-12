@@ -47,6 +47,14 @@ App.chatrooms = App.cable.subscriptions.create "ChatroomsChannel",
 			subtitle = $("[data-behavior='chatroom-link'][data-chatroom-id='#{data.chatroom_id}'] .media .media-subtitle")
 			subtitle.html(data.last_message_str)
 
+			# sidebar_badge = $("#chatrooms-side-btn .badge")
+			# all_unread_count = parseInt(sidebar_badge.text())
+			# if all_unread_count
+			# 	all_unread_count += 1
+			# else
+			# 	all_unread_count = 1
+			# sidebar_badge.html(all_unread_count)
+
 
   send_message: (chatroom_id, message) ->
   	@perform "send_message", {chatroom_id: chatroom_id, content: message}

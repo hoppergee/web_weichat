@@ -10,7 +10,9 @@ class User < ApplicationRecord
 
   has_many :friendships
   has_many :accepted_friendships, ->{where status: "accepted"}, class_name: 'Friendship'
+  has_many :pending_friendships, ->{where.not(status: "accepted")}, class_name: 'Friendship'
   has_many :friends, :through => :accepted_friendships
+  has_many :untreated_friends, :through => :pending_friendships, source: :friend
 
   mount_uploader :avatar, AvatarUploader
 
@@ -19,6 +21,7 @@ class User < ApplicationRecord
   		transaction do
   			Friendship.create(user: self, friend: friend, status: "pending" )
   			Friendship.create(user: friend, friend: self, status: "requested" )
+        FriendshipRequestJob.perform_later(friend)
   		end
   	end
   end
@@ -28,6 +31,7 @@ class User < ApplicationRecord
 	  	transaction do
 	  		Friendship.accept_one_side(self, friend)
 	  		Friendship.accept_one_side(friend, self)
+        FriendshipRequestJob.perform_later(friend, true)
 	  	end
   	end
   end
@@ -38,6 +42,15 @@ class User < ApplicationRecord
 
   def friendship_with(friend)
   	Friendship.find_by(user: self, friend: friend)
+  end
+
+  def is_friend_of?(user)
+    friendship = self.friendship_with(user)
+    if friendship && friendship.status == "accepted"
+      return true
+    else
+      return false
+    end
   end
 
   def defriend_with(friend)
@@ -51,10 +64,22 @@ class User < ApplicationRecord
   	end
   end
 
+  def untreated_friendships_count
+    self.friendships.where(status: "requested").count
+  end
+
   def unread_messages_count_in(chatroom)
     relationship = self.chatroom_user_relationships.find_by(chatroom: chatroom)
     messages = Message.where(chatroom: chatroom)
     messages.select {|msg| relationship.last_read_at < msg.created_at }.count
+  end
+
+  def all_unread_messages_count
+    count = 0
+    self.chatrooms.each do |room|
+      count += self.unread_messages_count_in(room)
+    end
+    return count
   end
 
   def avatar_url

@@ -15,5 +15,6 @@ class ChatroomsChannel < ApplicationCable::Channel
   	message = @chatroom.messages.create(content: data["content"], user: current_user)
   	@chatroom.update(updated_at: message.created_at)
   	MessageRelayJob.perform_later(message)
+    AllMessagesRelayJob.perform_later(current_user, @chatroom)
   end
 end

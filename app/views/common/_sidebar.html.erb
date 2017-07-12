@@ -7,11 +7,13 @@
 		<li id="chatrooms-side-btn">
 			<%= link_to chatrooms_path do %>
 				<%= image_when_current_in_chatrooms %>
+				<%= render_all_unread_count_of(current_user) %>
 			<% end %>	
 		</li>
 		<li id="contacts-side-btn">
 			<%= link_to contacts_path do %>
 				<%= image_when_current_in_contacts %>
+				<%= render_untreated_friendships_count_of(current_user) %>
 			<% end %>
 		</li>
 	<% else %>

@@ -22,6 +22,23 @@
 					<%= link_to "+", contacts_path, class: "btn btn-default btn-xs ", id:"add_new_friend_btn" %>
 				</div>
 			</div>
+
+			<div id="new-friend-requests" class="row">
+				<%= link_to " > 新朋友", "#friends-request-list", data:{toggle: "collapse"}, id:"new-friend-requests-btn" %>
+				<div class="collapse <%= "in" if current_user.untreated_friendships_count > 0 %>" id="friends-request-list">
+					<% current_user.untreated_friends.each do |friend| %>
+						<div class="media">
+							<div class="media-left media-middle">
+								<%= render_user_avatar_of(friend, "30x30", "media-object") %>
+							</div>
+							<div class="media-body">
+								<h5 class="media-heading"><%= friend.username %></h5>
+								<small class="pull-right friendship-status"><%= render_friendship_status_with(friend) %></small>
+							</div>
+						</div>
+					<% end %>
+				</div>
+			</div>
 			
 			<div id="friend-list-container" class="row">
 				<%= render partial: "common/friend_list", locals: {friends: current_user.friends} %>
