@@ -1,0 +1,20 @@
+<ul class="nav nav-pills nav-stacked">
+	<% chatrooms.order(updated_at: :desc).each do |chatroom| %>
+		<li class="chatroom-list-cell">
+			<%= link_to chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} do %>
+				<div class="media">
+					<div class="media-left">
+						<div class="group-avatars">
+							<%= render_avatar_of(chatroom) %>
+						</div>
+						<%= render_unread_count_of(chatroom) %>
+					</div>
+					<div class="media-body">
+						<div class="media-heading"><%= render_name_of(chatroom) %></div>
+						<div class="media-subtitle"><%= chatroom.last_message_str %></div>
+					</div>
+				</div>
+			<% end %>
+		</li>
+	<% end %>
+</ul>

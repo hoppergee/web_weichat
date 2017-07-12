@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :chatrooms do
+    collection do
+      get :search
+    end
   	resource :chatroom_user_relationships
   	resources :messages
   end

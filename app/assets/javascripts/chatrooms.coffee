@@ -25,3 +25,37 @@ $(document).on "turbolinks:load", ->
 
 			content.val("")
 
+
+$(document).on "turbolinks:load", ->
+	$("#search-chatrooms-field").on 'keypress', (e) ->
+		if e && e.keyCode == 13
+			url = $(this).attr "url"
+			console.log(url)
+			$.ajax 
+				url: url
+				type: "GET"
+				dataType: "script"
+				data:
+					query_str: $(this).val()
+
+
+
+
+# $(document).on("turbolinks:load", function(){
+# 	$("#search-friends-field").on('keypress', function(evt){
+# 		if (evt.keyCode == 13) {
+			
+# 			var url = $(this).attr("url");
+
+# 			$.ajax({
+# 				url: url,
+# 				method: "GET",
+# 				dataType: "script",
+# 				data: {
+# 					query_str: $(this).val()
+# 				}
+# 			})
+# 		}
+# 	})
+# })
+

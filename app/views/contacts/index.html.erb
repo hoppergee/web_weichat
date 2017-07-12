@@ -8,7 +8,6 @@
 			<%= search_form_for @q, url: contacts_path do |f| %>
 				<div class="input-group">
 					<%= f.search_field :username_or_email_cont, :placeholder => "可输入用户名、邮箱进行搜索", class: "form-control" %>
-					<!-- <input type="text" class="form-control" placeholder="可输入用户名、邮箱进行搜索"> -->
 					<span class="input-group-btn">
 						<%= f.submit "搜索", class: "btn btn-default" %>
 					</span>

@@ -46,7 +46,7 @@ class ContactsController < ApplicationController
 	end
 
 	def search_friends
-		q = User.ransack(username_or_email_cont: params[:query_str])
+		q = current_user.friends.ransack(username_or_email_cont: params[:query_str])
 		@friends = q.result - [current_user]
 	end
 

@@ -18,33 +18,14 @@
 		<div class="col-sm-4 chatroom-middle-bar" style="height: 100%;">
 			<div id="chatroom-search-container" class="row text-center" style="height: 10%;">
 				<div id="chatroom-search-head" class="form-inline">
-					<%= text_field_tag 'search-chatrooms-field', nil, placeholder: "搜索聊天室", url: "#{}"%>
+					<%= text_field_tag 'search-chatrooms-field', nil, placeholder: "搜索聊天室", url: search_chatrooms_path %>
 
 					<%= link_to "+", new_chatroom_path, class: "btn btn-default btn-xs", id:"create_new_chatroom_btn" %>
 				</div>
 			</div>
 
-			<div class="row chatroom-list">
-				<ul class="nav nav-pills nav-stacked">
-					<% current_user.chatrooms.order(updated_at: :desc).each do |chatroom| %>
-						<li class="chatroom-list-cell">
-							<%= link_to chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} do %>
-								<div class="media">
-									<div class="media-left">
-										<div class="group-avatars">
-											<%= render_avatar_of(chatroom) %>
-										</div>
-										<%= render_unread_count_of(chatroom) %>
-									</div>
-									<div class="media-body">
-										<div class="media-heading"><%= render_name_of(chatroom) %></div>
-										<div class="media-subtitle"><%= chatroom.last_message_str %></div>
-									</div>
-								</div>
-							<% end %>
-						</li>
-					<% end %>
-				</ul>
+			<div class="row chatroom-list" id="chatrooms-list-container">
+				<%= render partial: "common/chatrooms_list", locals: { chatrooms: current_user.chatrooms } %>
 			</div>
 		</div>
 

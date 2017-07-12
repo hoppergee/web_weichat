@@ -60,6 +60,15 @@ class ChatroomsController < ApplicationController
 		end
 	end
 
+	def search
+		# q = current_user.chatrooms.ransack(name_cont: params[:query_str],
+		# 								messages_content_cont: params[:query_str], 
+		# 								users_username_cont: params[:query_str],
+		# 								m: 'or')
+		q = current_user.chatrooms.ransack(name_or_messages_content_or_users_username_cont: params[:query_str])
+		@chatrooms = q.result.includes(:users, :messages)
+	end
+
 	private
 
 		def find_chatroom
