@@ -15,7 +15,7 @@ users_name.each_with_index do |name, index|
 	u = User.create!(username: name, 
 					email: "#{index}@qq.com", 
 					password: "123456",
-					avatar: open(URI::escape("http://ors0wuao2.bkt.clouddn.com/image/webweichat/#{name}.png")))
+					avatar: open(URI::escape("https://s3-ap-northeast-1.amazonaws.com/webweichat/cool_avatar/#{name}.png")))
 
 	puts "(#{index+1})#{u.username}创建完毕"
 end
