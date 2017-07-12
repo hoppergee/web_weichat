@@ -9,6 +9,7 @@ handleVisiblityChange = ->
 		badge.html("")
 		badge.removeClass("single_number")
 		badge.removeClass("double_number")
+		$("#chatrooms-side-btn").load(document.URL + ' #chatrooms-side-btn')
 
 $(document).on 'turbolinks:load', ->
 	$(document).on "click", handleVisiblityChange
@@ -39,23 +40,4 @@ $(document).on "turbolinks:load", ->
 					query_str: $(this).val()
 
 
-
-
-# $(document).on("turbolinks:load", function(){
-# 	$("#search-friends-field").on('keypress', function(evt){
-# 		if (evt.keyCode == 13) {
-			
-# 			var url = $(this).attr("url");
-
-# 			$.ajax({
-# 				url: url,
-# 				method: "GET",
-# 				dataType: "script",
-# 				data: {
-# 					query_str: $(this).val()
-# 				}
-# 			})
-# 		}
-# 	})
-# })
 

@@ -16,6 +16,18 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+  after_create_commit :random_add_some_friends
+
+  def random_add_some_friends
+    User.all[0..32].sample(10).each do |user|
+      if user != self
+        self.request_friendship_with(user)
+        user.accept_friendship_with(self)
+      end
+    end
+
+  end
+
   def request_friendship_with(friend)
   	unless self == friend or Friendship.exists?(user: self, friend: friend)
   		transaction do
